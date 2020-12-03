@@ -22,7 +22,7 @@ function TabPanel(props) {
             {...other}
         >
             {value === index && (
-                <Box p={3}>
+                <Box p={3} className='gps-tab-background'>
                     <div className='gps-entry-layout'>
                         {children}
                     </div>
