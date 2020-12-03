@@ -1,0 +1,21 @@
+  .asset-table{
+    // background-color: #F2F2F2;
+    background: linear-gradient(90deg, #F9EBEA, #D7DBDD) !important;
+    text-align: center;
+    margin-bottom: 20px;
+
+    th,td {
+      padding: 5px;
+      border-bottom-width: 2px;
+      vertical-align: bottom;
+      border-bottom: 1px solid #dee2e6;
+      border-right: 1px solid #dee2e6;
+    }
+
+    td{
+      width: 20%;
+    }
+    td:last-child {
+      width: 40%;
+    }
+  }
