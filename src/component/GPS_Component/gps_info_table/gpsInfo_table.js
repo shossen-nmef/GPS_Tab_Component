@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
     Paper,
     Grid,
@@ -19,10 +19,11 @@ import {
     TableHead,
     TableRow
 } from '@material-ui/core';
-
+import { useReactToPrint } from 'react-to-print';
 import SaveIcon from '@material-ui/icons/Save';
 import { Print } from '@material-ui/icons';
 import NMEFTextPhoneField from '../nmef-phone-text/nmef-phone-text';
+import AssetInfoTable from '../asset_info_table/AssetInfoTable';
 import GoogleMap from '../GmapAutoComplete/GoogleMap';
 import './gpsInfo_table.scss'
 
@@ -56,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const GpsInfoTable = () => {
+const GpsInfoTable = React.forwardRef((props, ref)=> {
     const classes = useStyles();
 
     const [state, setState] = useState({
@@ -107,7 +108,10 @@ const GpsInfoTable = () => {
     };
 
     return (
-        <div className={classes.root} >
+        <div className={classes.root} ref={ref}>
+            
+            <AssetInfoTable/>
+
             <form>
                 <Paper className='gps-table'>
                     
@@ -143,7 +147,7 @@ const GpsInfoTable = () => {
                                                     label="Yes"
                                                     labelPlacement="start"
                                                 />
-                                                {GpsOrder ? <TextField type="date" style={{ paddingLeft: '20px' }} size="small" variant="outlined" /> : null}
+                                                {GpsOrder ? <TextField type="date" value="12/12/2020" style={{ paddingLeft: '20px' }} size="small" variant="outlined" /> : null}
                                             </RadioGroup>
                                         </FormControl>
                                     </TableCell>
@@ -393,6 +397,7 @@ const GpsInfoTable = () => {
                         <TextField className={classes.paper} fullWidth placeholder="Additional Notes" size="medium" variant="outlined" />
                     </Grid>
                 </Grid>
+                
                 {/*Additional Notes*/}
                 <Button
                     style={{ float: 'right', marginRight: '10px', background: 'green' }}
@@ -404,19 +409,31 @@ const GpsInfoTable = () => {
                     Save
                 </Button>
 
-                <Button
-                    style={{float:'right',marginRight:'10px'}}
-                    variant="contained"
-                    color="primary"
-                    size="large"
-                    className={classes.button}
-                    startIcon={<Print />}>
-                    Print
-                </Button>
-
             </form>
         </div>
     );
-}
+});
 
-export default GpsInfoTable;
+const GpsInfocomponent = () => {
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
+
+    return (
+        <div>
+            <GpsInfoTable ref={componentRef} />
+            <Button
+                style={{ float: 'right', marginRight: '10px', position: 'relative',top:'-42px',left:'-120px' }}
+                onClick={handlePrint}
+                variant="contained"
+                color="primary"
+                size="large"
+                startIcon={<Print />}>
+                Print
+            </Button>
+        </div>
+    );
+};
+
+export default GpsInfocomponent;

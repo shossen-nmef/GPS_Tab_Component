@@ -5,7 +5,7 @@ import './AssetInfoTable.scss'
 
 const AssetInfoTable =()=> {
     return(
-        <Table bordered size="sm" className='asset-table'>
+        <Table bordered size="sm" className='asset-table' style={{width: '100%'}}>
             <thead>
                 <tr>
                     <th>Asset #</th>

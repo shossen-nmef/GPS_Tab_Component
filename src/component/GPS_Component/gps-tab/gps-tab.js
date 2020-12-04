@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import './gps-tab.scss'
 
-import AssetInfoTable from '../asset_info_table/AssetInfoTable';
+// import AssetInfoTable from '../asset_info_table/AssetInfoTable';
 import GpsInfoTable from '../gps_info_table/gpsInfo_table';
 
 function TabPanel(props) {
@@ -79,7 +79,7 @@ export default function TabsWrappedLabel() {
             </AppBar>
 
             <TabPanel value={value} index={0}>
-                <AssetInfoTable />
+                {/* <AssetInfoTable /> */}
                 <GpsInfoTable />
 
             </TabPanel>
