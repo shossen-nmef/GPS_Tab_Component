@@ -22,34 +22,35 @@ export default function AlertDialog({ openModal, removeItem}) {
     }, [openModal])
 
     return (
-        <div>
-            <Dialog open={open} onClose={handleClose}>
+        <Dialog open={open} onClose={() => {
+            handleClose();
+            removeItem(false);
+        }}>
 
-                <DialogTitle id="alert-dialog-title">{"Are you Sure?"}</DialogTitle>
+            <DialogTitle id="alert-dialog-title">{"Are you Sure?"}</DialogTitle>
 
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        This will permanently delete    
+            <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    This will permanently delete
                     </DialogContentText>
-                </DialogContent>
-                
-                <DialogActions>
-                    
-                    <Button color="secondary" onClick={()=> {
-                        setOpen(false);
-                        removeItem(false);
-                    }}>
-                        Disagree
+            </DialogContent>
+
+            <DialogActions>
+
+                <Button color="secondary" onClick={() => {
+                    setOpen(false);
+                    removeItem(false);
+                }}>
+                    Disagree
                     </Button>
 
-                    <Button color="primary" autoFocus onClick={()=>{
-                        setOpen(false);
-                        removeItem(true)
-                    }}>
-                        Agree
+                <Button color="primary" autoFocus onClick={() => {
+                    setOpen(false);
+                    removeItem(true)
+                }}>
+                    Agree
                     </Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+            </DialogActions>
+        </Dialog>
     );
 }

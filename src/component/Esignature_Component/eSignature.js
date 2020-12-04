@@ -163,12 +163,21 @@ const ApplicantEdit = () => {
         setOpen(false);
         if(confirm) {
             if(deleteItem.type=='carboncopy') {
-                console.log('test -- ', deleteItem)
             
-                setCarbonCopies(carbonCopies.filter((item, itemIndx) => itemIndx !== deleteItem.indx));
+               let data = carbonCopies.filter((item, itemIndx) => itemIndx !== deleteItem.indx);
+            //    console.log('data-- ', data);
+                setCarbonCopies(data);
                 seDeleteItem({});
             }
         }
+    }
+
+    const handleCarbonCopyTextvalue=(indx, e)=> {
+        e.preventDefault();
+        let data = [...carbonCopies];
+        let item = { ...carbonCopies[indx],  [e.target.name]:e.target.value};
+        data[indx] = item;
+        setCarbonCopies(data);
     }
 
     return (
@@ -391,10 +400,10 @@ const ApplicantEdit = () => {
                             
                                 <TableRow key={indx}>
                                     <TableCell align="left" className={classes.name}>
-                                        <TextField variant="outlined" disabled={item.isDisabled} defaultValue={item.name} size="small" fullWidth id="filled-basic" />
+                                        <TextField variant="outlined" disabled={item.isDisabled} name='name' value={item.name} onChange={(e) => handleCarbonCopyTextvalue(indx, e)} size="small" fullWidth id="filled-basic" />
                                     </TableCell>
                                     <TableCell align="left" className={classes.type}>
-                                        <TextField variant="outlined" disabled={item.isDisabled} defaultValue={item.title} size="small" id="filled-basic" />
+                                        <TextField variant="outlined" disabled={item.isDisabled} name='title' value={item.title} onChange={(e) => handleCarbonCopyTextvalue(indx, e)} size="small" id="filled-basic" />
                                     </TableCell>
                                     
                                     <TableCell align="left" className={classes.selection}>
@@ -408,7 +417,7 @@ const ApplicantEdit = () => {
                                         />
                                     </TableCell>
                                     <TableCell align="left" className={classes.email}>
-                                        <TextField variant="outlined" disabled={item.isDisabled} defaultValue={item.email} size="small" fullWidth id="filled-basic" />
+                                        <TextField variant="outlined" name='email' disabled={item.isDisabled} value={item.email} onChange={(e) => handleCarbonCopyTextvalue(indx, e)} size="small" fullWidth id="filled-basic" />
                                     </TableCell>
                                     <TableCell align="left" className={classes.action}>
                                         <IconButton color="primary" component="span" onClick={()=> handleCorboneCopies(indx, 'edit')}>
