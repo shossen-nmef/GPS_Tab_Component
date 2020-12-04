@@ -351,7 +351,7 @@ const GpsInfoTable = () => {
 
                                     <TableCell style={{ width: '50%' }}>
                                         <FormControl required component="fieldset" className={classes.formControl}>
-                                            <FormGroup>
+                                            <FormGroup className='special_request_checkbox'>
                                                 <FormControlLabel
                                                     control={<Checkbox size="small" checked={state.VendorToInstall} onChange={handleChange} name="VendorToInstall" />}
                                                     label="Vendor To Install"
