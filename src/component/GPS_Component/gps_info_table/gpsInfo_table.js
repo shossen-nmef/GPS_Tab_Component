@@ -25,7 +25,6 @@ import { Print } from "@material-ui/icons";
 import NMEFTextPhoneField from "../nmef-phone-text/nmef-phone-text";
 import AssetInfoTable from "../asset_info_table/AssetInfoTable";
 import GoogleMap from "../GmapAutoComplete/GoogleMap";
-import GpsInfoPrint from "./gps_info_print";
 import "./gpsInfo_table.scss";
 
 const useStyles = makeStyles((theme) => ({
@@ -570,7 +569,18 @@ const GpsInfoTable = () => {
           Save
         </Button>
 
-        <GpsInfoPrint />
+        <Button
+          style={{
+            float: "right",
+            marginRight: "10px",
+          }}
+          variant="contained"
+          color="primary"
+          size="large"
+          startIcon={<Print />}
+        >
+          Print
+        </Button>
       </form>
     </div>
   );
